@@ -67,3 +67,7 @@ class SessionManager:
     def active_count(self) -> int:
         """Return the number of active sessions."""
         return len(self._sessions)
+
+    def available_slots(self) -> int:
+        """Return the number of available session slots."""
+        return max(0, self._config.max_concurrent_sessions - len(self._sessions))

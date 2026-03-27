@@ -21,7 +21,7 @@ def create_app(config: BridgeConfig) -> FastAPI:
 
     session_mgr = SessionManager(config)
     vllm = VLLMClient(config)
-    router = create_ws_router(session_mgr, vllm)
+    router = create_ws_router(config, session_mgr, vllm)
     app.include_router(router)
 
     return app

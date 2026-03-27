@@ -36,6 +36,9 @@ vllm_url: "http://localhost:8000/v1"
 # vLLM API key (--api-key). Omit or set to null if no auth.
 # api_key: null
 
+# WebSocket auth token. Set to null to disable auth.
+# token: null
+
 # Bridge server bind address
 host: "0.0.0.0"
 
@@ -61,6 +64,7 @@ log_level: "info"
 |-------|---------|-------------|
 | `vllm_url` | `http://localhost:8000/v1` | vLLM server base URL |
 | `api_key` | `null` | vLLM API key (Bearer token) |
+| `token` | `null` | WebSocket auth token (query param) |
 | `host` | `0.0.0.0` | Server bind address |
 | `port` | `8888` | Server bind port |
 | `max_session_duration_s` | `300` | Max session duration in seconds |
@@ -75,6 +79,10 @@ Install [Kõnele](https://github.com/Kaljurand/Kõnele) from F-Droid or Google P
 Configure a custom recognition service with:
 
 - **WebSocket URL**: `ws://<your-host>:<port>/client/ws/speech`
+
+If token auth is enabled:
+
+- **WebSocket URL**: `ws://<your-host>:<port>/<your-token>/client/ws/speech`
 
 For example, if the bridge runs on `192.168.1.100:8888`:
 

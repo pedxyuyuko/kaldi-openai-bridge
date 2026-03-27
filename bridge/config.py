@@ -12,6 +12,9 @@ class BridgeConfig(BaseModel):
 
     vllm_url: str = Field(description="vLLM server URL")
     api_key: str | None = Field(default=None, description="vLLM API key (--api-key)")
+    token: str | None = Field(
+        default=None, description="WebSocket auth token (query param)"
+    )
     host: str = Field(default="0.0.0.0", description="Server host address")
     port: int = Field(default=8000, description="Server port")
     max_session_duration_s: int = Field(

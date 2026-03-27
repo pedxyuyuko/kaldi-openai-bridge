@@ -7,6 +7,10 @@ vllm_url: "http://localhost:8000/v1"
 # vLLM API key (--api-key). Set to null if vLLM runs without auth.
 # api_key: null
 
+# WebSocket authentication token. Set to null to disable auth.
+# Clients connect with /{token}/client/ws/speech
+token: "example-token"
+
 # Host to bind the bridge server
 host: "0.0.0.0"
 

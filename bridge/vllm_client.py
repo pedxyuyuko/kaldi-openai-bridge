@@ -26,7 +26,7 @@ class VLLMClient:
         url = f"{self._base_url}/v1/audio/transcriptions"
 
         files = {"file": ("audio.wav", wav_bytes, "audio/wav")}
-        data = {"stream": "true"}
+        data = {"model": "", "stream": "true"}
 
         headers: dict[str, str] = {}
         if self._config.api_key is not None:
