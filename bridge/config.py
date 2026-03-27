@@ -11,11 +11,9 @@ class BridgeConfig(BaseModel):
     """Configuration model for the bridge service."""
 
     vllm_url: str = Field(description="vLLM server URL")
-    vllm_model: str = Field(description="Model name for vLLM")
     api_key: str | None = Field(default=None, description="vLLM API key (--api-key)")
     host: str = Field(default="0.0.0.0", description="Server host address")
     port: int = Field(default=8000, description="Server port")
-    language: str | None = Field(default=None, description="Target language (optional)")
     max_session_duration_s: int = Field(
         default=60, description="Max session duration in seconds"
     )

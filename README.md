@@ -33,9 +33,6 @@ Copy `config.example.yaml` to `config.yaml` and adjust:
 # vLLM server URL (OpenAI-compatible endpoint)
 vllm_url: "http://localhost:8000/v1"
 
-# Model name served by vLLM
-vllm_model: "Qwen/Qwen2-Audio-7B-Instruct"
-
 # vLLM API key (--api-key). Omit or set to null if no auth.
 # api_key: null
 
@@ -44,9 +41,6 @@ host: "0.0.0.0"
 
 # Bridge server port
 port: 8888
-
-# Default language for transcription (ISO 639-1 code, optional)
-language: "en"
 
 # Maximum duration per streaming session (seconds)
 max_session_duration_s: 300
@@ -66,11 +60,9 @@ log_level: "info"
 | Field | Default | Description |
 |-------|---------|-------------|
 | `vllm_url` | `http://localhost:8000/v1` | vLLM server base URL |
-| `vllm_model` | `Qwen/Qwen2-Audio-7B-Instruct` | Model name for completions |
 | `api_key` | `null` | vLLM API key (Bearer token) |
 | `host` | `0.0.0.0` | Server bind address |
 | `port` | `8888` | Server bind port |
-| `language` | `en` | Transcription language (ISO 639-1) |
 | `max_session_duration_s` | `300` | Max session duration in seconds |
 | `max_concurrent_sessions` | `10` | Max simultaneous connections |
 | `vllm_timeout_s` | `120` | vLLM request timeout |

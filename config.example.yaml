@@ -4,9 +4,6 @@
 # URL of the vLLM server (OpenAI-compatible API endpoint)
 vllm_url: "http://localhost:8000/v1"
 
-# Model name served by vLLM (used for completion requests)
-vllm_model: "Qwen/Qwen2-Audio-7B-Instruct"
-
 # vLLM API key (--api-key). Set to null if vLLM runs without auth.
 # api_key: null
 
@@ -15,9 +12,6 @@ host: "0.0.0.0"
 
 # Port to bind the bridge server
 port: 8888
-
-# Default language for transcription (ISO 639-1 code)
-language: "en"
 
 # Maximum duration of a single streaming session in seconds
 max_session_duration_s: 300
