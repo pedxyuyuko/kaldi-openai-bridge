@@ -6,6 +6,28 @@ It accepts audio streams over WebSocket using the Kaldi server protocol, accumul
 
 ## Quick Start
 
+### Docker (Recommended)
+
+```bash
+# Pull from Docker Hub
+docker pull kaldi-openai-bridge/kaldi-openai-bridge:latest
+
+# Copy and edit config
+cp config.example.yaml config.yaml
+
+# Run with docker compose
+docker compose up -d
+
+# Or run directly
+docker run -d \
+  -p 8888:8888 \
+  -v $(pwd)/config.yaml:/config/config.yaml:ro \
+  --name kaldi-openai-bridge \
+  kaldi-openai-bridge/kaldi-openai-bridge:latest
+```
+
+### From Source
+
 ```bash
 # Clone and install
 git clone https://github.com/kaldi-openai-bridge/kaldi-openai-bridge.git
