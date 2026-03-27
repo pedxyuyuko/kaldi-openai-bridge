@@ -11,7 +11,7 @@ RUN groupadd -r bridge && useradd -r -g bridge -d /app -s /sbin/nologin bridge
 
 WORKDIR /app
 
-COPY pyproject.toml bridge/__init__.py ./
+COPY pyproject.toml README.md LICENSE ./
 COPY bridge/ ./bridge/
 RUN pip install --no-cache-dir . \
     && mkdir -p /config && chown bridge:bridge /config
