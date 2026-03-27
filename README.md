@@ -74,7 +74,7 @@ log_level: "info"
 
 ## Kõnele Configuration
 
-Install [Kõnele](https://github.com/Kaljurand/Kõnele) from F-Droid or Google Play.
+Install [Kõnele](https://github.com/Kaljurand/K6nele) from F-Droid or Google Play.
 
 Configure a custom recognition service with:
 
@@ -94,6 +94,8 @@ In Kõnele settings:
 1. Go to **Settings > Speech recognition > Recognition service**
 2. Add a custom service URL with the WebSocket address above
 3. The bridge will handle the Kaldi protocol and return transcriptions
+
+> **Note**: If you modify the API endpoint URL in Kõnele settings, the change may not take effect immediately. You need to **force stop the Kõnele app** (Android Settings > Apps > Kõnele > Force stop) and restart it for the new endpoint to be used.
 
 ## Architecture
 
