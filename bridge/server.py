@@ -101,7 +101,8 @@ def create_ws_router(
                             elapsed,
                         )
                         await ws.send_text(_make_response(full_text, final=True))
-
+                        await ws.close()
+                        break
         except WebSocketDisconnect:
             logger.info("session %s disconnected", session_id)
         except Exception:
@@ -115,7 +116,6 @@ def create_ws_router(
             if session_id is not None:
                 session_mgr.remove_session(session_id)
                 logger.info("session %s cleaned up", session_id)
-            await ws.close()
 
     @router.websocket("/{token}/client/ws/speech")
     async def speech_ws_with_token(ws: WebSocket, token: str) -> None:
