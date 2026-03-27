@@ -1,0 +1,9 @@
+.git
+.github
+.ruff_cache
+.sisyphus
+.venv
+__pycache__
+*.pyc
+*.pyo
+config.yaml

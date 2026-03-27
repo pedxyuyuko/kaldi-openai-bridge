@@ -1,0 +1,18 @@
+services:
+  bridge:
+    build: .
+    image: kaldi-openai-bridge:latest
+    container_name: kaldi-openai-bridge
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./config.yaml:/config/config.yaml:ro
+    environment:
+      - TZ=Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; s = socket.socket(); s.connect(('localhost', 8888)); s.close()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
