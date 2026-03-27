@@ -1,8 +1,7 @@
 services:
   bridge:
     build: .
-    image: kaldi-openai-bridge:latest
-    container_name: kaldi-openai-bridge
+    image: uuz233/kaldi-openai-bridge:latest
     restart: unless-stopped
     ports:
       - "8888:8888"
