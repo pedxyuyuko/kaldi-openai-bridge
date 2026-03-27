@@ -13,7 +13,7 @@ cd kaldi-openai-bridge
 pip install -e .
 
 # Copy and edit config
-cp config.yaml.example config.yaml
+cp config.example.yaml config.yaml
 # Edit config.yaml with your vLLM server URL
 
 # Run
@@ -27,7 +27,7 @@ python -m bridge --config config.yaml
 
 ## Configuration
 
-Copy `config.yaml.example` to `config.yaml` and adjust:
+Copy `config.example.yaml` to `config.yaml` and adjust:
 
 ```yaml
 # vLLM server URL (OpenAI-compatible endpoint)
@@ -35,6 +35,9 @@ vllm_url: "http://localhost:8000/v1"
 
 # Model name served by vLLM
 vllm_model: "Qwen/Qwen2-Audio-7B-Instruct"
+
+# vLLM API key (--api-key). Omit or set to null if no auth.
+# api_key: null
 
 # Bridge server bind address
 host: "0.0.0.0"
@@ -64,6 +67,7 @@ log_level: "info"
 |-------|---------|-------------|
 | `vllm_url` | `http://localhost:8000/v1` | vLLM server base URL |
 | `vllm_model` | `Qwen/Qwen2-Audio-7B-Instruct` | Model name for completions |
+| `api_key` | `null` | vLLM API key (Bearer token) |
 | `host` | `0.0.0.0` | Server bind address |
 | `port` | `8888` | Server bind port |
 | `language` | `en` | Transcription language (ISO 639-1) |

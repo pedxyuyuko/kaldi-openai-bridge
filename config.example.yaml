@@ -1,0 +1,32 @@
+# Kaldi OpenAI Bridge Configuration
+# Copy this file to config.yaml and adjust values as needed.
+
+# URL of the vLLM server (OpenAI-compatible API endpoint)
+vllm_url: "http://localhost:8000/v1"
+
+# Model name served by vLLM (used for completion requests)
+vllm_model: "Qwen/Qwen2-Audio-7B-Instruct"
+
+# vLLM API key (--api-key). Set to null if vLLM runs without auth.
+# api_key: null
+
+# Host to bind the bridge server
+host: "0.0.0.0"
+
+# Port to bind the bridge server
+port: 8888
+
+# Default language for transcription (ISO 639-1 code)
+language: "en"
+
+# Maximum duration of a single streaming session in seconds
+max_session_duration_s: 300
+
+# Maximum number of concurrent WebSocket sessions
+max_concurrent_sessions: 10
+
+# Timeout for vLLM API requests in seconds
+vllm_timeout_s: 120
+
+# Logging level (debug, info, warning, error, critical)
+log_level: "info"

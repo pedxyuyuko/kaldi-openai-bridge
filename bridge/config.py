@@ -12,6 +12,7 @@ class BridgeConfig(BaseModel):
 
     vllm_url: str = Field(description="vLLM server URL")
     vllm_model: str = Field(description="Model name for vLLM")
+    api_key: str | None = Field(default=None, description="vLLM API key (--api-key)")
     host: str = Field(default="0.0.0.0", description="Server host address")
     port: int = Field(default=8000, description="Server port")
     language: str | None = Field(default=None, description="Target language (optional)")
@@ -51,8 +52,8 @@ def parse_args() -> BridgeConfig:
     parser = argparse.ArgumentParser(description="kaldi-openai-bridge")
     parser.add_argument(
         "--config",
-        default="config.yml",
-        help="Path to configuration YAML file (default: config.yml)",
+        default="config.yaml",
+        help="Path to configuration YAML file (default: config.yaml)",
     )
     args = parser.parse_args()
     return load_config(args.config)
