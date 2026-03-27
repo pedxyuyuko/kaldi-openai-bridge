@@ -101,8 +101,7 @@ def create_ws_router(
                             elapsed,
                         )
                         await ws.send_text(_make_response(full_text, final=True))
-                        await ws.close()
-                        break
+
         except WebSocketDisconnect:
             logger.info("session %s disconnected", session_id)
         except Exception:
