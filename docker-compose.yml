@@ -1,6 +1,5 @@
 services:
   bridge:
-    build: .
     image: uuz233/kaldi-openai-bridge:latest
     restart: unless-stopped
     ports:
