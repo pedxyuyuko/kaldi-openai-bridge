@@ -1,11 +1,14 @@
 """VLLM client for async HTTP communication with vLLM server."""
 
+import logging
 from collections.abc import AsyncIterator
 
 import httpx
 
 from bridge.config import BridgeConfig
 from bridge.sse_parser import extract_transcription_text, is_stream_done, parse_sse_line
+
+logger = logging.getLogger(__name__)
 
 
 class VLLMClient:
@@ -30,11 +33,25 @@ class VLLMClient:
         if self._config.language is not None:
             data["language"] = self._config.language
 
-        async with httpx.AsyncClient(timeout=self._timeout) as client:
+        headers: dict[str, str] = {}
+        if self._config.api_key is not None:
+            headers["Authorization"] = f"Bearer {self._config.api_key}"
+
+        log_headers = {
+            k: (v[:16] + "..." if len(v) > 16 else v) for k, v in headers.items()
+        }
+        logger.debug("POST %s", url)
+        logger.debug("headers: %s", log_headers)
+
+        async with httpx.AsyncClient(timeout=self._timeout, headers=headers) as client:
             async with client.stream("POST", url, files=files, data=data) as response:
                 response.raise_for_status()
+                logger.debug("response status: %d", response.status_code)
 
+                in_asr = False
                 async for line in response.aiter_lines():
+                    logger.debug("sse line: %s", line)
+
                     sse_data = parse_sse_line(line)
                     if sse_data is None:
                         continue
@@ -43,5 +60,17 @@ class VLLMClient:
                         break
 
                     text = extract_transcription_text(sse_data)
-                    if text:
-                        yield text
+                    if not text:
+                        continue
+
+                    if "<asr_text>" in text:
+                        in_asr = True
+                        continue
+
+                    if not in_asr:
+                        continue
+
+                    if text.startswith("<") and text.endswith(">"):
+                        continue
+
+                    yield text
